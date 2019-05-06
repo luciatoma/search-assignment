@@ -8,9 +8,15 @@
 
 ### Remarks
 
--   Found filters array in search query and because I didn't find a query to retrieve them via GraphQL, decided to create an array with these values in config.js file
+-   Couldn't find a query that provided the available filters so I hardcoded them in `config.js`.
+-   I tried to use as much custom code as possible, as opposed to installing modules.
 
 ### Instructions
+
+1. git clone `<repo>`
+2. cd dir
+3. yarn
+4. npm start
 
 ### Running the tests
 
@@ -22,7 +28,7 @@ Pressing `w` will show the help.
 ### Tools used
 
 -   ESLint
--   apollo-boost
+-   react-apollo
 -   graphql
 -   prop-types
 -   styled-components
@@ -49,8 +55,9 @@ Pressing `w` will show the help.
 -   If search is successful, available filters list will be displayed below input, together with search results or message 'No results found' if there are no results.
 -   Available filters list is scrolled horizontally and will show shadows at start and end of scroll. Selecting a filter will scroll it to center of list.
 -   Each search result displays specific label, image and selected filters. Clicking on a search result will open new browser tab directing to specific link. Label text is displayed with ellipsis format (on screen width larger than 992px) with title showing entire label on mouse hover, whilst on screen width smaller than 992px the label is displayed entirely.
--   Search results list is scrollable with infinite scroll.
+-   In the design each result has the category(filter) under the title. There was no option to get that info from the query so I added the active filters. Decided to show all of them without ellipsis.
+-   Search results list is scrollable with infinite scroll pagination.
 
 ### Known issues
 
--   When tested on iOs device/simulator, found that input shadow is not displayed (even though the value is present in element values) and placeholder is a little bit higher than on rest of tested environments. Also, could not include 'Helvetica Neue' because it can only be bought (found a similar format of 'Helvetica Neue' but it seems to give the text a smaller width comparing with the design).
+-   Could not include 'Helvetica Neue' because it can only be bought (found a similar format of 'Helvetica Neue' but it seems to give the text a smaller width comparing with the design).

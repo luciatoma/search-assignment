@@ -70,13 +70,17 @@ class Home extends Component {
             this.setState({ loading: true, error: null });
             try {
                 const variables = { query, entities: filters };
+
+                // Handle pagination if needed
                 if (pageInfo && pageInfo.hasNextPage) {
                     variables.cursor = pageInfo.endCursor;
                 }
+
                 const res = await this.client.query({
                     query: SEARCH_ITEMS,
                     variables,
                 });
+
                 const {
                     data: { search },
                 } = res;
@@ -101,6 +105,7 @@ class Home extends Component {
     handleScroll = () => {
         const { loading, pageInfo } = this.state;
 
+        // If we're less than 150px from the bottom, trigger the pagination
         if (this.resultsWrapper.current) {
             const { scrollTop, clientHeight, scrollHeight } = this.resultsWrapper.current;
             if (scrollTop + clientHeight >= scrollHeight - 150 && !loading && pageInfo.hasNextPage) {

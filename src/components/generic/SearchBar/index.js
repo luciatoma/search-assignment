@@ -16,6 +16,7 @@ const Wrapper = styled.div`
 const StyledInput = styled.input`
     background: ${props => (props.focus ? theme.color.white : theme.color.gray1)};
     border-radius: 8px;
+    -webkit-appearance: none;
     -webkit-box-shadow: ${props =>
         props.focus ? '0 1px 2px 0 rgba(0, 19, 25, 0.16), 0 4px 12px 0 rgba(0, 19, 25, 0.08)' : 'none'};
     -moz-box-shadow: ${props => (props.focus ? '0 1px 2px 0 rgba(0, 19, 25, 0.16), 0 4px 12px 0 rgba(0, 19, 25, 0.08)' : 'none')};
@@ -24,7 +25,7 @@ const StyledInput = styled.input`
     font-family: ${theme.typeFamily.sans};
     font-size: 18px;
     line-height: 18px;
-    padding: 15px 15px 15px 52px;
+    padding: 15px 50px 15px 52px;
     width: 100%;
 
     &:focus {

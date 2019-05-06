@@ -8,7 +8,7 @@ exports[`FiltersList renders without crashing and matches snapshot 1`] = `
     className="sc-gzVnrw eYwnex"
   />
   <div
-    className="sc-ifAKCX bHiqEc"
+    className="sc-ifAKCX bATqMD"
     onScroll={[Function]}
   >
     <div
@@ -125,7 +125,7 @@ exports[`SearchBar renders without crashing and matches snapshot 1`] = `
   className="sc-bdVaJa cpqOBv"
 >
   <input
-    className="sc-bwzfXH jTluKx"
+    className="sc-bwzfXH erGLxu"
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
