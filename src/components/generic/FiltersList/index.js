@@ -1,24 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import config from '../../../config';
 import theme from '../../../themes/default';
-
-const availableFilters = [
-    'ARTIST',
-    'ARTWORK',
-    'ARTICLE',
-    'CITY',
-    'COLLECTION',
-    'FAIR',
-    'FEATURE',
-    'GALLERY',
-    'GENE',
-    'INSTITUTION',
-    'PROFILE',
-    'SALE',
-    'SHOW',
-    'TAG',
-];
 
 const StyledFilterWrapper = styled.div`
     align-items: center;
@@ -31,12 +15,11 @@ const StyledFilterWrapper = styled.div`
 const Wrapper = styled.div`
     display: flex;
     overflow: auto;
+    scrollbar-width: none;
 
     ::-webkit-scrollbar {
         display: none;
     }
-
-    scrollbar-width: none;
 `;
 
 const StyledList = styled.div`
@@ -67,10 +50,10 @@ const StyledFilter = styled.span`
     ${props =>
         props.active &&
         css`
+            background-image: linear-gradient(0deg, ${theme.color.blue1} 3%, ${theme.color.blue2} 100%);
             color: ${theme.color.white};
             font-weight: bold;
             letter-spacing: 0.4px;
-            background-image: linear-gradient(0deg, ${theme.color.blue1} 3%, ${theme.color.blue2} 100%);
             text-shadow: 0 1px 0 rgba(0, 19, 25, 0.08);
         `}
 `;
@@ -101,6 +84,7 @@ const ShadowSpan = styled.span`
         `}
 `;
 
+// Component displaying available filters
 class FiltersList extends Component {
     constructor() {
         super();
@@ -119,6 +103,7 @@ class FiltersList extends Component {
         this.handleScroll();
     }
 
+    // Handle filters list margin shadows when filter elements are outside of its container.
     handleScroll = () => {
         const scrollLeft = this.wrapper && this.wrapper.current && this.wrapper.current.scrollLeft;
         const listWidth = this.list && this.list.current && this.list.current.offsetWidth;
@@ -126,8 +111,13 @@ class FiltersList extends Component {
         const listScrollOutsideWrapper = wrapperWidth + scrollLeft;
         const rightScroll = listWidth - listScrollOutsideWrapper;
 
+        // If filter list has scrolled to left with a value smaller than 25px,
+        // then use value to increase left shadow of the list.
         if (scrollLeft < 25) this.setState({ shadowLeft: scrollLeft });
 
+        // If filter list end is with more than 25px outside of its container, then show right shadow to the list.
+        // If filter list end is with less than 25px outside of its container,
+        // use the value to decrease right shadow of the list.
         if (listScrollOutsideWrapper >= wrapperWidth && rightScroll > 25) {
             this.setState({ shadowRight: 25 });
         } else if (listScrollOutsideWrapper >= wrapperWidth && rightScroll <= 25) {
@@ -137,18 +127,20 @@ class FiltersList extends Component {
         return null;
     };
 
+    // Handle selected filters
     handleFilter = (item, e) => {
         const { onFiltersChange, filters } = this.props;
 
-        // Scroll the filter into view
+        // Scroll selected filter into view
         e.target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+        // Create array with selected filters
         let activeFiltersClone = [...filters];
         if (!activeFiltersClone.includes(item)) {
             activeFiltersClone.push(item);
         } else if (activeFiltersClone.includes(item)) {
             activeFiltersClone = activeFiltersClone.filter(elem => elem !== item);
         }
-        this.setState({ activeFilters: activeFiltersClone });
         onFiltersChange && onFiltersChange(activeFiltersClone);
     };
 
@@ -161,7 +153,7 @@ class FiltersList extends Component {
                 <ShadowSpan shadowLeft={shadowLeft} />
                 <Wrapper ref={this.wrapper} onScroll={this.handleScroll}>
                     <StyledList ref={this.list}>
-                        {availableFilters.map(item => (
+                        {config.availableFilters.map(item => (
                             <StyledFilter
                                 title={item.toLowerCase()}
                                 active={filters && filters.includes(item)}

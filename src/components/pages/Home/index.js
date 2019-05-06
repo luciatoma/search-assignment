@@ -8,7 +8,12 @@ import FiltersList from '../../generic/FiltersList';
 import SearchResults from '../../generic/SearchResults';
 import { SEARCH_ITEMS } from './queries/search';
 
-const StyledWrapper = styled.div`
+const MainWrapper = styled.div`
+    overflow: scroll;
+    height: 100vh;
+`;
+
+const Container = styled.div`
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -26,23 +31,25 @@ const StyledError = styled.span`
     width: 100%;
 `;
 
+// Home page component
 class Home extends Component {
     constructor() {
         super();
 
         this.state = {
-            filters: [],
-            results: null,
-            query: null,
-            loading: false,
             error: null,
+            filters: [],
+            loading: false,
+            query: null,
             pageInfo: null,
+            results: null,
         };
 
         this.client = null;
         this.resultsWrapper = React.createRef();
     }
 
+    // Handle search input value
     onQueryChange = async query => {
         const newState = { query, pageInfo: null };
 
@@ -56,6 +63,7 @@ class Home extends Component {
         this.setState(newState, this.getData);
     };
 
+    // Get search results
     getData = async () => {
         const { filters, query, pageInfo, results } = this.state;
         if (query && this.client) {
@@ -89,6 +97,7 @@ class Home extends Component {
         }
     };
 
+    // Handle infinite scroll on page results
     handleScroll = () => {
         const { loading, pageInfo } = this.state;
 
@@ -100,23 +109,19 @@ class Home extends Component {
         }
     };
 
+    // Handle selected filters
     onFiltersChange = filters => this.setState({ filters, pageInfo: null }, this.getData);
 
     render() {
-        const { results, loading, error, filters } = this.state;
+        const { error, filters, loading, results } = this.state;
 
         return (
             <ApolloConsumer>
                 {client => {
                     this.client = client;
                     return (
-                        <div
-                            ref={this.resultsWrapper}
-                            onScroll={this.handleScroll}
-                            id="test"
-                            style={{ height: '100vh', overflowY: 'scroll' }}
-                        >
-                            <StyledWrapper>
+                        <MainWrapper ref={this.resultsWrapper} onScroll={this.handleScroll}>
+                            <Container>
                                 <SearchBar onQueryChange={this.onQueryChange} loading={loading} />
                                 {error && <StyledError>{error}</StyledError>}
                                 {results && (
@@ -125,8 +130,8 @@ class Home extends Component {
                                         <SearchResults filters={filters} results={results} />
                                     </Fragment>
                                 )}
-                            </StyledWrapper>
-                        </div>
+                            </Container>
+                        </MainWrapper>
                     );
                 }}
             </ApolloConsumer>

@@ -14,27 +14,7 @@ const EmptyResults = styled.div`
     margin-top: 30px;
 `;
 
-// const loadMore = () =>
-//     fetchMore({
-//         variables: {
-//             cursor: comments.pageInfo.endCursor,
-//         },
-//         updateQuery: (previousResult, { fetchMoreResult }) => {
-//             const newEdges = fetchMoreResult.comments.edges;
-//             const { pageInfo } = fetchMoreResult.comments;
-
-//             return newEdges.length
-//                 ? {
-//                       comments: {
-//                           __typename: previousResult.comments.__typename,
-//                           edges: [...previousResult.comments.edges, ...newEdges],
-//                           pageInfo,
-//                       },
-//                   }
-//                 : previousResult;
-//         },
-//     });
-
+// Component displaying list with all search results
 // Using index because there's nothing to uniquely identify the result in the response
 /* eslint-disable react/no-array-index-key */
 const SearchResults = ({ filters, results }) => {

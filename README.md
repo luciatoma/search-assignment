@@ -1,56 +1,56 @@
-# TicketSwap front-end assignment
+### Description
 
-Thank you for doing this assignment! The goal is to build a simple search app using [Artsy](https://www.artsy.net/)’s public GraphQL API. We’ve already set up a few things to get you started, so you can focus on the front-end only. If you have any questions you can always [contact us](mailto:rob@ticketswap.com).
+1. Created a simple search page with filters and infinite scroll on search results, according to given design.
+2. Added Prettier and Eslint for code format.
+3. Responsive design.
+4. Created unit tests using Jest.
+5. Tested on Chrome, Mozzilla and Safari (all desktop and mobile).
 
-## Design and assets
+### Remarks
 
-Find the design as Sketch document in `/assets/sketch` as well as PNG images under `/assets/png`. We’ve also included SVG files for icons you might need in `/assets/icons`.
+-   Found filters array in search query and because I didn't find a query to retrieve them via GraphQL, decided to create an array with these values in config.js file
 
-## Setup
+### Instructions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It requires **Node** and **npm** to run. Install both via [nodejs.org](https://nodejs.org/en/) if you haven’t yet.
+### Running the tests
 
-### Clone or download the repository
+`npm t || yarn test`
 
-Clone or download this repository to your local machine and follow below instructions to get everything up and running.
+Pressing `a` will run all the tests.
+Pressing `w` will show the help.
 
-## Available Scripts
+### Tools used
 
-In the project directory, you can run:
+-   ESLint
+-   apollo-boost
+-   graphql
+-   prop-types
+-   styled-components
 
-### `npm install`
+### Main structure
 
-Installs the required dependencies for the project.
+1. In project/src we have:
 
-### `npm start`
+-   `/src/__tests__` - where all tests are;
+-   `/src/themes` - JS file with constants for general use;
+-   `/src/images` - images provided by assignment;
+-   `/src/config.js` - includes the apiUrl, BaseUrl and available filters array;
+-   `/README.md` - instructions for running the project;
 
-Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. In project.src.components we have:
 
-All the source files are located inside `/src`. Any changes to those files will automatically reload the browser. If you want to edit the HTML template you can find it in the `/public` folder.
+-   `/src/components/generic` - components for general use (FiltersList, SearchBar, SearchResults);
+-   `/src/components/pages/Home` - component containing main functionality and logic;
 
-### `npm test`
+### Functionality
 
-Launches the test runner in the interactive watch mode.
+-   Landing page is presented with search input. Inserted values can be searched by clicking on the search icon on the left part of the input or by hitting 'Enter' key. Input value can be cleared by clicking the clear icon on the right of the input (which is visible only when input has value).
+-   In case there is an error while exectuing search, an error message is displayed bellow input.
+-   If search is successful, available filters list will be displayed below input, together with search results or message 'No results found' if there are no results.
+-   Available filters list is scrolled horizontally and will show shadows at start and end of scroll. Selecting a filter will scroll it to center of list.
+-   Each search result displays specific label, image and selected filters. Clicking on a search result will open new browser tab directing to specific link. Label text is displayed with ellipsis format (on screen width larger than 992px) with title showing entire label on mouse hover, whilst on screen width smaller than 992px the label is displayed entirely.
+-   Search results list is scrollable with infinite scroll.
 
-### `npm run build`
+### Known issues
 
-Generates a production-ready build.
-
-## GraphQL API
-
-You’ll be using Artsy’s public GraphQL API for this assignment.
-
-We set up Apollo Client so you can start fetching data with it. Under https://metaphysics-production.artsy.net you’re able to explore the API and its documentation.
-
-## Handing in the assignment
-
-Once you’re done building the app as per design, you can send us a link in reply to our email.
-
-## References
-
-- [React docs](https://reactjs.org/)
-- [Artsy GraphQL API](https://metaphysics-production.artsy.ne)
-
-## Good luck!
-
-And again if you have any questions, please [let us know](mailto:rob@ticketswap.com)!
+-   When tested on iOs device/simulator, found that input shadow is not displayed (even though the value is present in element values) and placeholder is a little bit higher than on rest of tested environments. Also, could not include 'Helvetica Neue' because it can only be bought (found a similar format of 'Helvetica Neue' but it seems to give the text a smaller width comparing with the design).

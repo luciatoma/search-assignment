@@ -60,6 +60,7 @@ const StyledAvatar = styled.img`
     width: 48px;
 `;
 
+// Styled component for search result
 const Item = props => {
     const { image, filters, label, link } = props;
 

@@ -1,4 +1,20 @@
 export default {
     apiUrl: 'https://metaphysics-production.artsy.net',
     baseUrl: 'https://www.artsy.net',
+    availableFilters: [
+        'ARTIST',
+        'ARTWORK',
+        'ARTICLE',
+        'CITY',
+        'COLLECTION',
+        'FAIR',
+        'FEATURE',
+        'GALLERY',
+        'GENE',
+        'INSTITUTION',
+        'PROFILE',
+        'SALE',
+        'SHOW',
+        'TAG',
+    ],
 };

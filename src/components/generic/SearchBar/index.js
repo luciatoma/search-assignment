@@ -76,6 +76,7 @@ const Icon = styled.img`
         `}
 `;
 
+// Component displaying search input
 class SearchBar extends Component {
     constructor() {
         super();
@@ -88,34 +89,39 @@ class SearchBar extends Component {
         this.input = React.createRef();
     }
 
+    // Change state to have focus true when input is focused
     onFocus = () => {
         this.setState({ focus: true });
     };
 
+    // Change state to have no focus when input is blured
     onBlur = () => {
         const { value } = this.state;
         if (!value) return this.setState({ focus: false });
         return null;
     };
 
+    // Handle search action when hitting 'Enter' on input
     handleKeyPressEnter = target => {
         if (target.keyCode === 13) {
             if (target.target.value) this.handleSearch();
         }
     };
 
+    // Handle change of input value
     handleChange = value => {
         this.setState({ value });
     };
 
+    // Handle search action
     handleSearch = () => {
         const { onQueryChange } = this.props;
         const { value } = this.state;
         onQueryChange && onQueryChange(value);
     };
 
+    // Clear the input value and refocus the field
     handleClear = () => {
-        // Clear the value and refocus the field
         this.setState({ value: '' }, () => {
             this.input.current.focus();
             this.handleSearch();
