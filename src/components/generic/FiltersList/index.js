@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-// import ScrollShadow from 'react-scroll-shadow';
-
 import theme from '../../../themes/default';
 
-const filters = [
+const availableFilters = [
     'ARTIST',
     'ARTWORK',
     'ARTICLE',
@@ -27,17 +25,18 @@ const StyledFilterWrapper = styled.div`
     display: flex;
     margin-top: 16px;
     position: relative;
+    width: 100%;
 `;
 
 const Wrapper = styled.div`
     display: flex;
-
     overflow: auto;
-    width: 512px;
 
     ::-webkit-scrollbar {
         display: none;
     }
+
+    scrollbar-width: none;
 `;
 
 const StyledList = styled.div`
@@ -55,7 +54,7 @@ const StyledFilter = styled.span`
     flex: 0 0 auto;
     font-family: ${theme.typeFamily.sans};
     font-size: 16px;
-    letter-spacing: 0;
+    letter-spacing: 1px;
     line-height: 22px;
     margin-right: 16px;
     padding: 11px 17px;
@@ -70,6 +69,7 @@ const StyledFilter = styled.span`
         css`
             color: ${theme.color.white};
             font-weight: bold;
+            letter-spacing: 0.4px;
             background-image: linear-gradient(0deg, ${theme.color.blue1} 3%, ${theme.color.blue2} 100%);
             text-shadow: 0 1px 0 rgba(0, 19, 25, 0.08);
         `}
@@ -106,7 +106,6 @@ class FiltersList extends Component {
         super();
 
         this.state = {
-            activeFilters: [],
             shadowLeft: 0,
             shadowRight: 0,
         };
@@ -139,33 +138,33 @@ class FiltersList extends Component {
     };
 
     handleFilter = (item, e) => {
-        const { filterValues } = this.props;
-        const { activeFilters } = this.state;
+        const { onFiltersChange, filters } = this.props;
 
         // Scroll the filter into view
-        e.target.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-        let activeFiltersClone = [...activeFilters];
+        e.target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        let activeFiltersClone = [...filters];
         if (!activeFiltersClone.includes(item)) {
             activeFiltersClone.push(item);
-            // this.scrollToActiveLink();
         } else if (activeFiltersClone.includes(item)) {
             activeFiltersClone = activeFiltersClone.filter(elem => elem !== item);
         }
         this.setState({ activeFilters: activeFiltersClone });
-        return filterValues && filterValues(activeFiltersClone);
+        onFiltersChange && onFiltersChange(activeFiltersClone);
     };
 
     render() {
-        const { activeFilters, shadowLeft, shadowRight } = this.state;
+        const { shadowLeft, shadowRight } = this.state;
+        const { filters } = this.props;
 
         return (
             <StyledFilterWrapper>
                 <ShadowSpan shadowLeft={shadowLeft} />
                 <Wrapper ref={this.wrapper} onScroll={this.handleScroll}>
                     <StyledList ref={this.list}>
-                        {filters.map(item => (
+                        {availableFilters.map(item => (
                             <StyledFilter
-                                active={activeFilters.includes(item)}
+                                title={item.toLowerCase()}
+                                active={filters.includes(item)}
                                 key={item}
                                 onClick={e => this.handleFilter(item, e)}
                             >
@@ -181,7 +180,8 @@ class FiltersList extends Component {
 }
 
 FiltersList.propTypes = {
-    filterValues: PropTypes.func,
+    onFiltersChange: PropTypes.func.isRequired,
+    filters: PropTypes.array,
 };
 
 export default FiltersList;

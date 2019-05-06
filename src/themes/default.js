@@ -5,6 +5,7 @@ export default {
         blue2: '#32c4f2',
         gray1: '#F5F5F6',
         gray2: '#99A1A3',
+        red: '#FF0000',
         white: '#FFFFFF',
     },
     typeFamily: {
