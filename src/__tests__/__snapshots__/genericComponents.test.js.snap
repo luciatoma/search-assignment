@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FiltersList renders without crashing and matches snapshot 1`] = `
+<div
+  className="sc-bxivhb jGlIoF"
+>
+  <span
+    className="sc-gzVnrw eYwnex"
+  />
+  <div
+    className="sc-ifAKCX bHiqEc"
+    onScroll={[Function]}
+  >
+    <div
+      className="sc-EHOje dxiHPF"
+    >
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="artist"
+      >
+        artist
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="artwork"
+      >
+        artwork
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="article"
+      >
+        article
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="city"
+      >
+        city
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="collection"
+      >
+        collection
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="fair"
+      >
+        fair
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="feature"
+      >
+        feature
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="gallery"
+      >
+        gallery
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="gene"
+      >
+        gene
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="institution"
+      >
+        institution
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="profile"
+      >
+        profile
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="sale"
+      >
+        sale
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="show"
+      >
+        show
+      </span>
+      <span
+        className="sc-bZQynM cVeDuS"
+        onClick={[Function]}
+        title="tag"
+      >
+        tag
+      </span>
+    </div>
+  </div>
+  <span
+    className="sc-gzVnrw jrvbvw"
+  />
+</div>
+`;
+
+exports[`SearchBar renders without crashing and matches snapshot 1`] = `
+<div
+  className="sc-bdVaJa cpqOBv"
+>
+  <input
+    className="sc-bwzfXH jTluKx"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Search..."
+    type="text"
+    value=""
+  />
+  <img
+    alt="Search"
+    className="sc-htpNat NRooi"
+    onClick={[Function]}
+    src="magnifying-glass.svg"
+  />
+  
+</div>
+`;
+
+exports[`SearchResults renders without crashing and matches snapshot 1`] = `
+<div
+  className="sc-jTzLTM esfPQV"
+>
+  <a
+    className="sc-htoDjs fFONZT"
+    href="https://www.artsy.netundefined"
+    target="_blank"
+    title="Vancouver"
+  >
+    <div
+      className="sc-dnqmqq bRLzkm"
+    >
+      <span
+        className="sc-iwsKbI eDvzxh"
+      >
+        Vancouver
+      </span>
+      <span
+        className="sc-gZMcBi MqHje"
+      >
+        artist, artwork
+      </span>
+    </div>
+    <span
+      className="sc-gqjmRU bJcmDL"
+    />
+  </a>
+</div>
+`;

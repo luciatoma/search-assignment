@@ -62,7 +62,6 @@ const StyledAvatar = styled.img`
 
 const Item = props => {
     const { image, filters, label, link } = props;
-    console.log('filters', filters);
 
     return (
         <ItemWrapper href={`${config.baseUrl}${link}`} target="_blank" title={label}>
@@ -80,7 +79,6 @@ Item.propTypes = {
     filters: PropTypes.array,
     label: PropTypes.string,
     link: PropTypes.string,
-    windowWidth: PropTypes.number,
 };
 
 export default Item;

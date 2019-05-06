@@ -164,7 +164,7 @@ class FiltersList extends Component {
                         {availableFilters.map(item => (
                             <StyledFilter
                                 title={item.toLowerCase()}
-                                active={filters.includes(item)}
+                                active={filters && filters.includes(item)}
                                 key={item}
                                 onClick={e => this.handleFilter(item, e)}
                             >
